@@ -9,7 +9,6 @@ services:
       ME_CONFIG_BASICAUTH_USERNAME: sidneysouzajunior
       ME_CONFIG_BASICAUTH_PASSWORD: root
       ME_CONFIG_MONGODB_PORT: 27017
-
     links:
       - mongo
     networks:
@@ -17,7 +16,6 @@ services:
 
   mongo:
     image: mongo
-
     ports:
       - "27017:27017"
     volumes:
