@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.workshopmongo.worshopmongodb.domain.Post;
 import br.com.workshopmongo.worshopmongodb.domain.User;
 import br.com.workshopmongo.worshopmongodb.services.UserService;
 
@@ -38,6 +39,12 @@ public class UserResource {
         return ResponseEntity.ok().body(user);
     }
 
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
+    } 
+
     @PostMapping
     public ResponseEntity<Void> insert(@RequestBody User user) {
         service.insert(user);
@@ -57,4 +64,6 @@ public class UserResource {
         service.update(user);
         return ResponseEntity.noContent().build();
     }
+
+
 }
