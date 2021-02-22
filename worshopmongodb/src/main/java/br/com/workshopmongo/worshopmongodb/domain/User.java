@@ -1,9 +1,11 @@
 package br.com.workshopmongo.worshopmongodb.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "user") // collection modifica o nome da coleção
@@ -16,8 +18,8 @@ public class User implements Serializable {
     private String name;
     private String email;
 
-    
-    private List<Post> posts;
+    @DBRef(lazy = true)
+    private List<Post> posts = new ArrayList<>();
 
     public User() {
     }
